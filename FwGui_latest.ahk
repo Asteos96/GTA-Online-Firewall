@@ -1,4 +1,4 @@
-﻿/* GTA Online Firewall */
+/* GTA Online Firewall */
 /* You can find a few settings at the end of this file */
 /* Last update June 16, 2024 */
 
@@ -55,13 +55,16 @@ mainGuiControlsInit() {
     placeControl(mainGui, hotkeyText, , 150, "-Hidden cWhite Center", "s11 Norm", "Hotkey - " mainHotkey)
     
     soundsCheckbox := mainGui.Add("CheckBox", "cWhite")
-    placeControl(mainGui, soundsCheckbox, , 20, "-Hidden Center", "s11 Norm", "Enable Sounds")
     soundsCheckbox.Value := soundsDefaultState
 	soundsCheckbox.onEvent("Click", updateSettings)
+    placeControl(mainGui, soundsCheckbox, , 20, "-Hidden Center", "s11 Norm", "Enable Sounds")
     
-    trayControl := mainGui.Add("Button", "Hidden")
-    placeControl(mainGui, trayControl, , 245, "-Hidden", "s11 Norm", "Minimize")
-    trayControl.OnEvent("Click", appHide)
+    minimizeBtn := mainGui.Add("Button", "Hidden")
+    placeControl(mainGui, minimizeBtn, , 245, "-Hidden", "s11 Norm", "Minimize")
+    minimizeBtn.OnEvent("Click", appHide)
+
+	versionText := mainGui.Add("Text", "Hidden")
+	placeControl(mainGui, versionText, , 282, "-Hidden c525863 Center", "s8 Norm", "v0.2-gui")
 }
 
 isFirstTime()
@@ -175,10 +178,10 @@ The main hotkey. All supported key names: https://www.autohotkey.com/docs/v2/Key
 mainHotkey=PgDn
 
 The default state of "Enable Sounds" checkbox. Valid values are 0 or 1
-soundsDefaultState=1
+soundsDefaultState=0
 
 Whether the app should be on top of other windows or not. Valid values are +AlwaysOnTop or -AlwaysOnTop
 appOptions=-AlwaysOnTop
 
 Whether the app should be minimized or hidden in tray on startup. Keep empty or use valid values: Min or Tray
-appMinTray=Tray
+appMinTray=
